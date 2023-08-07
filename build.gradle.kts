@@ -18,9 +18,11 @@ tasks.withType<Test> {
 publishing {
     publications {
         create<MavenPublication>("maven") {
-            groupId = "com.ioannuwu"
+            groupId = "github.ioannuwu"
             artifactId = "lexer-utils"
-            version = "1.0"
+            version = "1.0.1"
+
+            from(components["java"])
         }
     }
 }

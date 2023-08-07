@@ -1,1 +1,1 @@
-rootProject.name = "LexerUtils"
+rootProject.name = "lexer-utils"

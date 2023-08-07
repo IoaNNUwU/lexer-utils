@@ -1,4 +1,4 @@
-# LexerUtils
+# Lexer Utils
 
 Kotlin library that provides easy way to split `Strings` to `List of Tokens` by
 specified pattern.
