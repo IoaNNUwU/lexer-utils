@@ -8,7 +8,7 @@ class SplitterTest {
     @Test
     fun `empty result test`() {
 
-        val splitter = SplitterImpl(
+        val splitter = Splitter.withPattern(
             Token(' ', IncludeStatus.EXCLUDE),
             Token(')', IncludeStatus.EXCLUDE),
             Token('(', IncludeStatus.EXCLUDE),
@@ -27,7 +27,7 @@ class SplitterTest {
     @Test
     fun `splitter with excluding pattern test`() {
 
-        val splitter = SplitterImpl(
+        val splitter = Splitter.withPattern(
             Token(' ', IncludeStatus.EXCLUDE),
         )
 
@@ -44,7 +44,7 @@ class SplitterTest {
     @Test
     fun `splitter with including pattern test`() {
 
-        val splitter = SplitterImpl(
+        val splitter = Splitter.withPattern(
             Token('(', IncludeStatus.INCLUDE),
             Token(')', IncludeStatus.INCLUDE),
         )
@@ -62,7 +62,7 @@ class SplitterTest {
     @Test
     fun `splitter with mixed pattern test`() {
 
-        val splitter = SplitterImpl(
+        val splitter = Splitter.withPattern(
             Token(' ', IncludeStatus.EXCLUDE),
             Token(',', IncludeStatus.EXCLUDE),
 
@@ -82,6 +82,34 @@ class SplitterTest {
     }
 
     @Test
+    fun `splitter methods should produce same result`() {
+
+        val splitter = Splitter.withPattern(
+            Token(' ', IncludeStatus.EXCLUDE),
+            Token(',', IncludeStatus.EXCLUDE),
+
+            Token('(', IncludeStatus.INCLUDE),
+            Token(')', IncludeStatus.INCLUDE),
+            Token(';', IncludeStatus.INCLUDE),
+        )
+
+        val string = "  (hel,lo wor(ld) tes;t )  "
+        val expectedResult = listOf("(", "hel", "lo", "wor", "(", "ld", ")", "tes", ";", "t", ")")
+
+        val resultString = splitter.split(string)
+        val resultCharSequence = splitter.split(string as CharSequence)
+        val resultSequenceOfChars = splitter.split(string.asSequence())
+        val resultCharArray = splitter.split(string.toCharArray())
+        val resultArrayOfChars = splitter.split(string.toCharArray().toTypedArray())
+
+        Assertions.assertEquals(expectedResult, resultString)
+        Assertions.assertEquals(expectedResult, resultCharSequence)
+        Assertions.assertEquals(expectedResult, resultSequenceOfChars)
+        Assertions.assertEquals(expectedResult, resultCharArray)
+        Assertions.assertEquals(expectedResult, resultArrayOfChars)
+    }
+
+    @Test
     fun `extension functions with pattern test`() {
 
         val string = "  (hel,lo wor(ld) tes;t )  "
@@ -97,13 +125,17 @@ class SplitterTest {
 
         val expectedResult = listOf("(", "hel", "lo", "wor", "(", "ld", ")", "tes", ";", "t", ")")
 
-        val result1 = string.asSequence().splitWith(*pattern)
-        val result2 = string.splitWith(*pattern)
-        val result3 = (string as CharSequence).splitWith(*pattern)
+        val result1 = string.asSequence().splitWithPattern(*pattern)
+        val result2 = string.splitWithPattern(*pattern)
+        val result3 = (string as CharSequence).splitWithPattern(*pattern)
+        val result4 = string.toCharArray().splitWithPattern(*pattern)
+        val result5 = string.toCharArray().toTypedArray().splitWithPattern(*pattern)
 
         Assertions.assertEquals(expectedResult, result1)
         Assertions.assertEquals(expectedResult, result2)
         Assertions.assertEquals(expectedResult, result3)
+        Assertions.assertEquals(expectedResult, result4)
+        Assertions.assertEquals(expectedResult, result5)
     }
 
     @Test
@@ -111,7 +143,7 @@ class SplitterTest {
 
         val string = "  (hel,lo wor(ld) tes;t )  "
 
-        val splitter = SplitterImpl(
+        val splitter = Splitter.withPattern(
             Token(' ', IncludeStatus.EXCLUDE),
             Token(',', IncludeStatus.EXCLUDE),
 
@@ -122,12 +154,16 @@ class SplitterTest {
 
         val expectedResult = listOf("(", "hel", "lo", "wor", "(", "ld", ")", "tes", ";", "t", ")")
 
-        val result1 = string.asSequence().splitWith(splitter)
-        val result2 = string.splitWith(splitter)
-        val result3 = (string as CharSequence).splitWith(splitter)
+        val result1 = string.asSequence().splitWithSplitter(splitter)
+        val result2 = string.splitWithSplitter(splitter)
+        val result3 = (string as CharSequence).splitWithSplitter(splitter)
+        val result4 = string.toCharArray().splitWithSplitter(splitter)
+        val result5 = string.toCharArray().toTypedArray().splitWithSplitter(splitter)
 
         Assertions.assertEquals(expectedResult, result1)
         Assertions.assertEquals(expectedResult, result2)
         Assertions.assertEquals(expectedResult, result3)
+        Assertions.assertEquals(expectedResult, result4)
+        Assertions.assertEquals(expectedResult, result5)
     }
 }

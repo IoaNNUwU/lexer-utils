@@ -1,6 +1,10 @@
-package github.ioannuwu.lexerutils
+package github.ioannuwu.lexerutils.internal
 
-class SplitterImpl(
+import github.ioannuwu.lexerutils.IncludeStatus
+import github.ioannuwu.lexerutils.Splitter
+import github.ioannuwu.lexerutils.Token
+
+internal class SplitterImpl(
     private vararg val patterns: Token
 ) : Splitter {
 
@@ -39,4 +43,10 @@ class SplitterImpl(
     override fun split(charSequence: CharSequence): List<String> = split(charSequence.toString())
 
     override fun split(charSequence: Sequence<Char>): List<String> = split(charSequence.joinToString(""))
+
+    override fun split(charArray: CharArray): List<String> =
+        split(charArray.asSequence())
+
+    override fun split(charArray: Array<Char>): List<String> =
+        split(charArray.asSequence())
 }
