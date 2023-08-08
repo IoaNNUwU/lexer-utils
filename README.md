@@ -44,3 +44,28 @@ Assertions.assertEquals(
     result
 )
 ```
+
+### You can add git dependency on this repo:
+
+By copy-pasting this to your `settings.gradle.kts` which will convert repo to local module with
+specified identifier
+
+```kotlin
+sourceControl {
+    gitRepository(URI.create("https://github.com/IoaNNUwU/lexer-utils.git/")) {
+        producesModule("com.github.ioannuwu:lexer-utils")
+    }
+}
+```
+
+And by adding dependency on produced module in your `build.gradle.kts`
+with specific version (as now `1.0.3`)
+
+versions can be found in GitHub Releases
+```kotlin
+dependencies {
+    implementation("com.github.ioannuwu:lexer-utils:1.0.3")
+}
+```
+
+Try to compile code by executing `./gradlew build` and restart IDE if something doesn't work
