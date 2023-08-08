@@ -45,7 +45,7 @@ Assertions.assertEquals(
 )
 ```
 
-### You can add git dependency on this repo:
+## You can add git dependency on this repo:
 
 By copy-pasting this to your `settings.gradle.kts` which will convert repo to local module with
 specified identifier
