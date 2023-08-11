@@ -12,16 +12,19 @@ Methods defined for:
 
 ## Examples:
 
+
 ```kotlin
-val splitter = Splitter.withPattern(
-    Token(' ', IncludeStatus.EXCLUDE),
-    Token('(', IncludeStatus.INCLUDE),
-    Token(')', IncludeStatus.INCLUDE),
-)
+val string = "  hello (world test11) "
 
-val string = "  hello ( world test11  ) "
-
-val result = splitter.split(string)
+// Split string using extension function
+// using excluding pattern to exclude whitespaces
+// and including pattern to include '(', ')'
+val result = string.asSequence()
+    .splitWithPattern(
+        Token(' ', IncludeStatus.EXCLUDE),
+        Token('(', IncludeStatus.INCLUDE),
+        Token(')', IncludeStatus.INCLUDE),
+    )
 
 Assertions.assertEquals(
     listOf("hello", "(", "world", "test11", ")"),
@@ -30,17 +33,19 @@ Assertions.assertEquals(
 ```
 
 ```kotlin
-val string = "  hello ( world test11  ) "
+val string = """ "Hello World" test "Test2" test3 "Test4" """
 
-val result = string.asSequence()
-    .splitWithPattern(
-        Token(' ', IncludeStatus.EXCLUDE),
-        Token('(', IncludeStatus.INCLUDE),
-        Token(')', IncludeStatus.INCLUDE),
-    )
+// Identify strings by using Range
+// and remove whitespaces using excluding pattern
+val splitter = Splitter.withPattern(
+    Range('"', '"', IncludeStatus.INCLUDE),
+    Token(' ', IncludeStatus.EXCLUDE),
+)
 
-Assertions.assertEquals(     
-    listOf("hello", "(", "world", "test11", ")"),
+val result = splitter.split(string)
+
+Assertions.assertEquals(
+    listOf("\"Hello World\"", "test", "\"Test2\"", "test3", "\"Test4\""),
     result
 )
 ```
@@ -59,12 +64,12 @@ sourceControl {
 ```
 
 And by adding dependency on produced module in your `build.gradle.kts`
-with specific version (as now `1.0.3`)
+with specific version (as now `1.1.0`)
 
 versions can be found in GitHub Releases
 ```kotlin
 dependencies {
-    implementation("com.github.ioannuwu:lexer-utils:1.0.3")
+    implementation("com.github.ioannuwu:lexer-utils:1.1.0")
 }
 ```
 
