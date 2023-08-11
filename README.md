@@ -58,7 +58,7 @@ specified identifier
 ```kotlin
 sourceControl {
     gitRepository(URI.create("https://github.com/IoaNNUwU/lexer-utils.git/")) {
-        producesModule("github.ioannuwu:lexer-utils")
+        producesModule("com.github.ioannuwu:lexer-utils")
     }
 }
 ```
@@ -69,7 +69,7 @@ with specific version (as now `1.1.0`)
 versions can be found in GitHub Releases
 ```kotlin
 dependencies {
-    implementation("github.ioannuwu:lexer-utils:1.1.0")
+    implementation("com.github.ioannuwu:lexer-utils:1.1.0")
 }
 ```
 To import this library
