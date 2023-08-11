@@ -4,8 +4,8 @@ plugins {
     id "org.jetbrains.kotlin.jvm" version "1.9.0"
 }
 
-group = 'com.github.ioannuwu'
-version = '1.0.3'
+group = 'github.ioannuwu'
+version = '1.1.0'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
