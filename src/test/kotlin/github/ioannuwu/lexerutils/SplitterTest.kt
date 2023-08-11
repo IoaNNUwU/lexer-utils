@@ -25,6 +25,25 @@ class SplitterTest {
     }
 
     @Test
+    fun `splitter with including whitespaces test`() {
+
+        val splitter = Splitter.withPattern(
+            Token(' ', IncludeStatus.INCLUDE),
+            Token(')', IncludeStatus.INCLUDE),
+            Token('(', IncludeStatus.INCLUDE),
+        )
+
+        val string = "  (hello world ) "
+
+        val result = splitter.split(string)
+
+        Assertions.assertEquals(
+            listOf(" ", " ", "(", "hello", " ", "world", " ", ")", " "),
+            result,
+        )
+    }
+
+    @Test
     fun `splitter with excluding pattern test`() {
 
         val splitter = Splitter.withPattern(

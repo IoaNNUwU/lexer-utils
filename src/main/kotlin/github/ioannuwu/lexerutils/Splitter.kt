@@ -21,6 +21,6 @@ interface Splitter {
     fun split(charArray: Array<Char>): List<String>
 
     companion object {
-        fun withPattern(vararg patterns: Token) = SplitterImpl(*patterns) as Splitter
+        fun withPattern(vararg patterns: Pattern) = SplitterImpl(*patterns) as Splitter
     }
 }

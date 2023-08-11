@@ -9,11 +9,19 @@ package github.ioannuwu.lexerutils
  * @param includeStatus will token be excluded in or included in final list
  *
  * @see Splitter
+ * @see Range
  */
 data class Token(
-    val token: String,
-    val includeStatus: IncludeStatus = IncludeStatus.INCLUDE,
-) {
+    private val token: String,
+    override val includeStatus: IncludeStatus = IncludeStatus.INCLUDE,
+) : Pattern {
+
     constructor(char: Char, includeStatus: IncludeStatus = IncludeStatus.INCLUDE)
             : this(char.toString(), includeStatus)
+
+    override val leftToken: String
+        get() = token
+
+    override val rightToken: String?
+        get() = null
 }

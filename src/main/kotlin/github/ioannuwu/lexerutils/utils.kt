@@ -4,7 +4,7 @@ package github.ioannuwu.lexerutils
  * fun *.splitWithSplitter() can be used for optimal performance
  */
 fun String.splitWithPattern(
-    vararg patterns: Token
+    vararg patterns: Pattern
 ): List<String> {
     val string = this
 
@@ -17,7 +17,7 @@ fun String.splitWithPattern(
  * fun *.splitWithSplitter() can be used for optimal performance
  */
 fun CharSequence.splitWithPattern(
-    vararg patterns: Token
+    vararg patterns: Pattern
 ) : List<String> {
     val charSequence = this
 
@@ -30,7 +30,7 @@ fun CharSequence.splitWithPattern(
  * fun *.splitWithSplitter() can be used for optimal performance
  */
 fun Sequence<Char>.splitWithPattern(
-    vararg patterns: Token
+    vararg patterns: Pattern
 ): List<String> {
     val charSequence = this
 
@@ -43,7 +43,7 @@ fun Sequence<Char>.splitWithPattern(
  * fun *.splitWithSplitter() can be used for optimal performance
  */
 fun CharArray.splitWithPattern(
-    vararg patterns: Token
+    vararg patterns: Pattern
 ): List<String> {
     val charArray = this
 
@@ -56,7 +56,7 @@ fun CharArray.splitWithPattern(
  * fun *.splitWithSplitter() can be used for optimal performance
  */
 fun Array<Char>.splitWithPattern(
-    vararg patterns: Token
+    vararg patterns: Pattern
 ): List<String> {
     val charArray = this
 
