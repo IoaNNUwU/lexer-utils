@@ -58,7 +58,7 @@ specified identifier
 ```kotlin
 sourceControl {
     gitRepository(URI.create("https://github.com/IoaNNUwU/lexer-utils.git/")) {
-        producesModule("com.github.ioannuwu:lexer-utils")
+        producesModule("github.ioannuwu:lexer-utils")
     }
 }
 ```
@@ -69,8 +69,12 @@ with specific version (as now `1.1.0`)
 versions can be found in GitHub Releases
 ```kotlin
 dependencies {
-    implementation("com.github.ioannuwu:lexer-utils:1.1.0")
+    implementation("github.ioannuwu:lexer-utils:1.1.0")
 }
+```
+To import this library
+```kotlin
+import github.ioannuwu.lexerutils.*
 ```
 
 Try to compile code by executing `./gradlew build` and restart IDE if something doesn't work
